@@ -51,14 +51,14 @@ public class Sample3AuthConfiguration {
     return new BCryptPasswordEncoder();
   }
 
-  // @Bean
-  // public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-  // http.formLogin();
+  @Bean
+  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    http.formLogin();
 
-  // http.authorizeHttpRequests()
-  // .mvcMatchers("/sample3/**").authenticated();
+    http.authorizeHttpRequests()
+        .mvcMatchers("/sample5/**").authenticated();
 
-  // http.logout().logoutSuccessUrl("/");
-  // return http.build();
-  // }
+    http.logout().logoutSuccessUrl("/");
+    return http.build();
+  }
 }
