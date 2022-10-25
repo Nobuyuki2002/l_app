@@ -9,6 +9,10 @@
 <body>
   <h1>Authorized! <span sec:authentication="name"></span>
   </h1>
+
+  <p th:else="fruit,stat:${fruits}">
+    <a href="@{/step3(id=${fruit.id})}">[[$fruit]]</a>
+  </p>
   <a href="/logout">ログアウト</a>
 </body>
 
