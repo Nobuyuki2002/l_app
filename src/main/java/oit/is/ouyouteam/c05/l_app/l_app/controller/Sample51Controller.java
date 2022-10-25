@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import oit.is.ouyouteam.c05.l_app.l_app.model.FruitMapper;
+import oit.is.ouyouteam.c05.l_app.l_app.model.Fruit;
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/sample5")
@@ -17,9 +19,9 @@ public class Sample51Controller {
 
   @GetMapping("step1")
   public String sample21(ModelMap model) {
-    model.addAttribute("fruits", fruitMapper.selectAllFruit());
+    ArrayList<Fruit> fruits = fruitMapper.selectAllFruit();
+    model.addAttribute("fruits", fruits);
     return "sample51.html";
   }
-
 
 }
