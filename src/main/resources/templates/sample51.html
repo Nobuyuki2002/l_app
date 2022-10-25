@@ -11,12 +11,16 @@
   </h1>
 
   <div th:if="${fruits}">
-    <div th:each="fruit,stat:${fruits}">
-      <ul>
-        <li><a th:href="@{/sample51/step3(id=${fruit.id})}">[[${fruit.name}]]</a></li>
-      </ul>
-    </div>
+    <tr th:each="fruit,stat:${fruits}">
+      <td>
+        <a th:href="@{/sample5/step3(id=${fruit.id})}">[[${fruit.name}]]</a>
+      </td>
+    </tr>
   </div>
+  <div th:if="${by_fruit}">
+    [[${by_fruit.name}]]を[[${by_fruit.price}]]円で購入しました
+  </div>
+
 
   <a href="/logout">ログアウト</a>
 </body>
