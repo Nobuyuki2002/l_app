@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security">
+
+<head>
+  <meta charset="utf-8">
+  <title>SpringBoot Sample5-1</title>
+</head>
+
+<body>
+  <h1>Authorized! <span sec:authentication="name"></span>
+  </h1>
+
+  <div th:if="${fruits}">
+    <table border="1">
+      <thead>
+        <th>果物</th>
+        <th>金額</th>
+        <th>処理</th>
+      </thead>
+      <tbody sec:authorize="hasRole('ROLE_CUSTOMER')">
+        <tr th:each="fruit,stat:${fruits}">
+          <td>[[${fruit.name}]]</td>
+          <td>[[${fruit.price}]]</td>
+          <td><a th:href="@{/sample5/step3(id=${fruit.id})}">購入</a></td>
+        </tr>
+      </tbody>
+      <tbody sec:authorize="hasRole('ROLE_SELLER')">
+        <tr th:each="fruit,stat:${fruits}">
+          <td>[[${fruit.name}]]</td>
+          <td>[[${fruit.price}]]</td>
+          <td><a th:href="@{/sample5/step4(id=${fruit.id})}">編集</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div th:if="${by_fruit}">
+    [[${by_fruit.name}]]を[[${by_fruit.price}]]円で購入しました
+  </div>
+  <div th:if="${update_fruit}">
+    果物を編集します
+    <form th:action="@{/sample5/step5(id=${update_fruit.id})}" method="post">
+      <input type="text" name="name" th:value="${update_fruit.name}" /><br>
+      <input type="number" name="price" th:value="${update_fruit.price}" /><br>
+      <input type="submit" value="編集"><input type="reset" value="リセット">
+    </form>
+  </div>
+
+  <a href="/logout">ログアウト</a>
+</body>
+
+</html>
